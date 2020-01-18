@@ -84,3 +84,4 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+JackBike/app/src/debug/res/values/google_maps_api.xml
