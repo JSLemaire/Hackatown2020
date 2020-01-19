@@ -22,14 +22,16 @@ public abstract class JsonReader {
     }
 
     public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-        InputStream is = new URL(url).openStream();
+        InputStream is;
         try {
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-            String jsonText = readAll(rd);
-            JSONObject json = new JSONObject(jsonText);
-            return json;
-        } finally {
+            is = new URL(url).openStream();
             is.close();
+            //BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            //String jsonText = readAll(rd);
+            //JSONObject json = new JSONObject(jsonText);
+            return null;
+        }catch(Exception e){
+
         }
     }
 }
