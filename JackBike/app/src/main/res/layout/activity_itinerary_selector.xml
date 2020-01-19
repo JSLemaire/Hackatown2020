@@ -8,30 +8,28 @@
 
     <Button
         android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="120dp"
+        android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/button"
-        android:text="Route"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:forceDarkAllowed="false"
+        android:text="map"
+        android:textColor="#FFFFFF"/>
 
-    <TextView
-        android:id="@+id/editText"
+    <Button
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="#037ffc"
-        android:ems="20"
-        android:textSize="15pt"
-        android:inputType="textPersonName"
-        android:text=" Sélectionnez un itinéraire"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#ffffff" />
-
+        android:text="Modifier l'itinéraire"
+        android:background="@drawable/itinerary_button"
+        android:textSize="12pt"
+        android:textColor="#ffffff"
+        />
 
 </RelativeLayout>
