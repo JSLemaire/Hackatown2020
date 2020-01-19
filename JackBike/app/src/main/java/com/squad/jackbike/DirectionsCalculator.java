@@ -26,7 +26,7 @@ public class DirectionsCalculator {
     }
 
     private String urlGoogleDirections = "https://maps.googleapis.com/maps/api/directions/json?";
-
+/*
     public JSONObject getDirectionsBike (LatLng origin, LatLng dest) throws DirectionsException {
         // Add origin to the parameters
         urlGoogleDirections += "origin=" + latlngToString(origin);
@@ -87,7 +87,7 @@ public class DirectionsCalculator {
             throw new DirectionsException(currentActivity);
         }
     }
-
+*/
     /**
      * Converts a LatLng object to a String using its coordinates.
      * The resulting format : "(latitude),(longitude)".

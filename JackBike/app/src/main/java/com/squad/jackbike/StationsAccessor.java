@@ -1,5 +1,6 @@
 package com.squad.jackbike;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,7 +13,7 @@ public final class StationsAccessor {
 
     public void update() throws Exception{
         //try {
-        JSONObject stationsInformation = JsonReader.readJsonFromUrl(url);
+        JSONArray stationsInformation = JsonReader.readJsonFromUrl(url);
         /*
         }catch(IOException e){
             System.out.println("IO EXCEPTION\t\t\t"+e.toString());
