@@ -9,13 +9,14 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-
-import java.util.ArrayList;
+import com.squad.jackbike.exceptions.DirectionsException;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private StationsAccessor stationAccessor;
+    CurrentPlace currentPositionFinder = new CurrentPlace(this);
+    DirectionsCalculator dirCalc = new DirectionsCalculator(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //stationAccessor.update();
 
         // Detecting user's current position using ActivityCurrentPlace
-        CurrentPlace currentPositionFinder = new CurrentPlace(this);
         LatLng location = currentPositionFinder.getCurrentLocation();
         // Moving and zooming camera on current location (will be Montreal if not found)
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+
+        LatLng testStationLocation = new LatLng(45.530199,-73.573818);
+        try {
+            dirCalc.getDirectionsFoot(location, testStationLocation);
+        } catch (DirectionsException e) {
+            e.printStackTrace();
+        }
     }
 }

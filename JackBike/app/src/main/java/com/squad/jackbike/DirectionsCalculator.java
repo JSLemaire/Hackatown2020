@@ -2,10 +2,10 @@ package com.squad.jackbike;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.location.Location;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.squad.jackbike.exceptions.DirectionsException;
 
 import org.json.JSONException;
@@ -27,12 +27,12 @@ public class DirectionsCalculator {
 
     private String urlGoogleDirections = "https://maps.googleapis.com/maps/api/directions/json?";
 
-    public JSONObject getDirectionsBike (Location origin, Location dest) throws DirectionsException {
+    public JSONObject getDirectionsBike (LatLng origin, LatLng dest) throws DirectionsException {
         // Add origin to the parameters
-        urlGoogleDirections += "origin=" + locationToString(origin);
+        urlGoogleDirections += "origin=" + latlngToString(origin);
 
         // Add destination to the parameters
-        urlGoogleDirections += "&destination=" + locationToString(dest);
+        urlGoogleDirections += "&destination=" + latlngToString(dest);
 
         // Add mode of transportation to the parameters
         urlGoogleDirections += "&mode=bicycling";
@@ -56,12 +56,12 @@ public class DirectionsCalculator {
 
     }
 
-    public JSONObject getDirectionsFoot (Location origin, Location dest) throws DirectionsException {
+    public JSONObject getDirectionsFoot (LatLng origin, LatLng dest) throws DirectionsException {
         // Add origin to the parameters
-        urlGoogleDirections += "origin=" + locationToString(origin);
+        urlGoogleDirections += "origin=" + latlngToString(origin);
 
         // Add destination to the parameters
-        urlGoogleDirections += "&destination=" + locationToString(dest);
+        urlGoogleDirections += "&destination=" + latlngToString(dest);
 
         // Add mode of transportation to the parameters
         urlGoogleDirections += "&mode=walking";
@@ -85,14 +85,14 @@ public class DirectionsCalculator {
     }
 
     /**
-     * Converts a Location object to a String using its coordinates.
+     * Converts a LatLng object to a String using its coordinates.
      * The resulting format : "(latitude),(longitude)".
-     * @param coords the Location object to convert
-     * @return the Location's coordinates, as a String value
+     * @param coords the LatLng object to convert
+     * @return the LatLng's coordinates, as a String value
      */
-    private String locationToString (Location coords) {
-        return String.valueOf(coords.getLatitude()) + ","
-                + String.valueOf(coords.getLongitude());
+    private String latlngToString (LatLng coords) {
+        return String.valueOf(coords.latitude) + ","
+                + String.valueOf(coords.longitude);
     }
 
     /**
