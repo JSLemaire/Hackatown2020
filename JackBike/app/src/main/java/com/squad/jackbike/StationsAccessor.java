@@ -10,14 +10,16 @@ public final class StationsAccessor {
     private String url = "https://api-core.bixi.com/gbfs/fr/station_information.json";
     private ArrayList<Station> stations = new ArrayList<>();
 
-    public void update(){
-        try {
-            JSONObject stationsInformation = JsonReader.readJsonFromUrl(url);
+    public void update() throws Exception{
+        //try {
+        JSONObject stationsInformation = JsonReader.readJsonFromUrl(url);
+        /*
         }catch(IOException e){
             System.out.println("IO EXCEPTION\t\t\t"+e.toString());
         }catch(JSONException e){
             System.out.println("JSON EXCEPTION\t\t\t"+e.toString());
         }
+        */
     }
 
     public void getAll(ArrayList<Station> stations){

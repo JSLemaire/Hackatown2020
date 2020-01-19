@@ -1,6 +1,7 @@
 package com.squad.jackbike;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private StationsAccessor stationAccessor;
+    private StationsAccessor stationsAccessor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Fetching BIXI stations
-        //stationAccessor = new StationsAccessor();
-        //stationAccessor.update();
+        stationsAccessor = new StationsAccessor();
+        try {
+            stationsAccessor.update();
+        }catch(Exception e){
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG);
+        }
 
         // Detecting user's current position using ActivityCurrentPlace
         CurrentPlace currentPositionFinder = new CurrentPlace(this);
