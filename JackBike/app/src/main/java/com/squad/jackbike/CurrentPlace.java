@@ -2,12 +2,14 @@ package com.squad.jackbike;
 
 import android.location.Location;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 
 public class CurrentPlace extends AppCompatActivity {
@@ -36,18 +38,17 @@ public class CurrentPlace extends AppCompatActivity {
 
         // retreive last known location
         locationProvider.getLastLocation()
-                // react only on success
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                .addOnCompleteListener(new OnCompleteListener<Location>() {
                     @Override
-                    public void onSuccess(Location location) {
-                        // the location found is a Location object
-                        if (location != null) {
-                            // updating "currentLocation" with the location found
-                            currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                    public void onComplete(@NonNull Task<Location> task) {
+                        // react only on success
+                        if (task.isSuccessful()) {
+                            Location tempLocation = task.getResult();
+                            currentLocation = new LatLng(tempLocation.getLatitude(), tempLocation.getLongitude());
                         }
-                        // The Location object can be null in rare cases. If that happens, currentLocation will not be updated.
                     }
                 });
+
     }
 
 
