@@ -4,8 +4,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -19,7 +17,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private StationsAccessor stationAccessor;
     private ArrayList<Station> station;
-    private RequestQueue mQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +26,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        // creating request queue
-        mQueue = Volley.newRequestQueue(this);
     }
 
 
@@ -47,7 +41,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Accessing BIXI stations
+        // Fetching BIXI stations
         stationAccessor = new StationsAccessor();
         stationAccessor.fetch();
 
