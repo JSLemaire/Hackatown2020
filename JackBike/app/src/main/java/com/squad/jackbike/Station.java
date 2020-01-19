@@ -2,11 +2,11 @@ package com.squad.jackbike;
 
 public class Station {
     private String name = "";
-    private int id = 0;
+    private String id = "";
     private double latitude = 0.0;
     private double longitude = 0.0;
 
-    public Station(String name, int id, double latitude, double longitude){
+    public Station(String name, String id, double latitude, double longitude){
         this.name = name;
         this.id = id;
         this.latitude = latitude;
@@ -21,11 +21,11 @@ public class Station {
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
