@@ -19,12 +19,12 @@ public class DirectionsCalculator {
 
     // Local instance of the current activity and geoApiContext
     private GeoApiContext geoApiContext;
-    private MapsActivity activity;
+    private ItenerarySelectorActivity activity;
 
     // Instance of the response from the Google Directions API
     //private JSONObject result;
 
-    public DirectionsCalculator(MapsActivity activity, GeoApiContext geoApiContext) {
+    public DirectionsCalculator(ItenerarySelectorActivity activity, GeoApiContext geoApiContext) {
         this.geoApiContext = geoApiContext;
         this.activity = activity;
     }

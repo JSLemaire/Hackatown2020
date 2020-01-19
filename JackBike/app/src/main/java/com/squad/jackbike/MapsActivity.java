@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,13 +35,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 9003;
 
     private GoogleMap mMap;
+    private Button button;
     private StationsAccessor stationsAccessor;
     private ArrayList<Station> stations = new ArrayList<>();
     private boolean mLocationPermission = false;
-    private GeoApiContext mGeoApiContext = null;
-
-    CurrentPlace currentPositionFinder = new CurrentPlace(this);
-    DirectionsCalculator dirCalc = new DirectionsCalculator(this, mGeoApiContext);
 
 
     @Override
@@ -50,13 +49,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openItenerarySelector();
+            }
+        });
+    }
 
-        if (mGeoApiContext == null) {
-            DirectionsCalculator dir = new DirectionsCalculator(this, mGeoApiContext);
-            mGeoApiContext = new GeoApiContext.Builder()
-                    .apiKey(dir.getKeyFromMetaData())
-                    .build();
-        }
+    public void openItenerarySelector(){
+        Intent intent = new Intent(this, ItenerarySelectorActivity.class);
+        startActivity(intent);
     }
 
     // open source code by CodingWithMitch
@@ -205,7 +209,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LatLng testStationLocation = new LatLng(45.530199,-73.573818);
         dirCalc.calculateFootDirections(location, testStationLocation);
-
-
     }
 }

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button"
+        android:forceDarkAllowed="false"
+        android:text="carte"
+        android:textColor="#FFFFFF"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#bbffee">
+
+            <TextView
+                android:id="@+id/TextViewDepart"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="false"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="  Départ : "
+                android:textSize="12pt"
+                android:textColor="#000000"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+            <EditText
+                android:id="@+id/editTextDepart"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="false"
+                android:ems="10"
+                android:textSize="12pt"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#bbffee">
+            <TextView
+                android:id="@+id/TextViewArrive"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="false"
+                android:ems="10"
+                android:textSize="12pt"
+                android:textColor="#000000"
+                android:inputType="textPersonName"
+                android:text="  Arrivée : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+            <EditText
+                android:id="@+id/editTextArrive"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="false"
+                android:ems="10"
+                android:textSize="12pt"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#bbffee">
+            <TextView
+                android:id="@+id/TextViewDate"
+                android:layout_width="170dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="false"
+                android:ems="10"
+                android:textSize="10pt"
+                android:textColor="#000000"
+                android:inputType="textPersonName"
+                android:text="  Date de départ : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+            <EditText
+                android:id="@+id/editTextDate"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="false"
+                android:ems="10"
+                android:textSize="12pt"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#bbffee">
+            <TextView
+                android:id="@+id/TextViewHour"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="false"
+                android:ems="10"
+                android:textSize="10pt"
+                android:textColor="#000000"
+                android:inputType="textPersonName"
+                android:text="  Heure : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+            <EditText
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="false"
+                android:ems="10"
+                android:textSize="12pt"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Modifier l'itinéraire"
+            android:background="@drawable/itinerary_button"
+            android:textSize="12pt"
+            android:textColor="#ffffff"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/Spacer"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="false"
+                        android:ems="10"
+                        android:textSize="12pt"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+
+                    <TextView
+                        android:id="@+id/TextViewDestinations"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="false"
+                        android:ems="10"
+                        android:textSize="14pt"
+                        android:inputType="textPersonName"
+                        android:text="  Itinéraires : "
+                        android:textColor="#000000"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+                    <TextView
+                        android:id="@+id/Spacer2"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_alignParentTop="false"
+                        android:ems="10"
+                        android:textSize="12pt"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+                    <Button
+                        android:id="@+id/destination1"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:text="Voir itinéraire 1"
+                        android:textSize="12pt"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/itinerary_button_v2"
+                        />
+
+                    <Button
+                        android:id="@+id/destination2"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:text="Voir itinéraire 2"
+                        android:textSize="12pt"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/itinerary_button_v2"
+                        />
+
+                    <Button
+                        android:id="@+id/destination3"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:text="Voir itinéraire 3"
+                        android:textSize="12pt"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/itinerary_button_v2"
+                        />
+
+                    <Button
+                        android:id="@+id/destination4"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:text="Voir itinéraire 4"
+                        android:textSize="12pt"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/itinerary_button_v2"
+                        />
+
+                    <Button
+                        android:id="@+id/destination5"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:text="Voir itinéraire 5"
+                        android:textSize="12pt"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/itinerary_button_v2"
+                        />
+
+                    <Button
+                        android:id="@+id/destination6"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:text="Voir itinéraire 6"
+                        android:textSize="12pt"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/itinerary_button_v2"
+                        />
+
+                    <Button
+                        android:id="@+id/destination7"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:text="Voir itinéraire 7"
+                        android:textSize="12pt"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/itinerary_button_v2"
+                        />
+
+                    <Button
+                        android:id="@+id/destination8"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:text="Voir itinéraire 8"
+                        android:textSize="12pt"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/itinerary_button_v2"
+                        />
+
+                    <Button
+                        android:id="@+id/destination9"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:text="Voir itinéraire 9"
+                        android:textSize="12pt"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/itinerary_button_v2"
+                        />
+
+                </LinearLayout>
+
+
+            </ScrollView>
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

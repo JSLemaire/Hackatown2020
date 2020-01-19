@@ -21,9 +21,9 @@ public class CurrentPlace extends AppCompatActivity {
     private FusedLocationProviderClient locationProvider;
 
     // Local instance of the current activity
-    private MapsActivity currentActivity;
+    private ItenerarySelectorActivity currentActivity;
 
-    public CurrentPlace(MapsActivity currentActivity) {
+    public CurrentPlace(ItenerarySelectorActivity currentActivity) {
         this.currentActivity = currentActivity;
     }
 
