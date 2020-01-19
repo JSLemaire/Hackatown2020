@@ -13,7 +13,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 public class CurrentPlace extends AppCompatActivity {
 
     // Default location is Montreal if not found
-    private LatLng currentLocation = new LatLng(45, -73);
+    private LatLng currentLocation = new LatLng(45.5017, -73.5673);
 
     // Instance to use Google Play Services' location API
     private FusedLocationProviderClient locationProvider;

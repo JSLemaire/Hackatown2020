@@ -51,11 +51,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         stationAccessor = new StationsAccessor();
         stationAccessor.fetch();
 
-        // Adding marker on current position using ActivityCurrentPlace
+        // Detecting user's current position using ActivityCurrentPlace
         CurrentPlace currentPositionFinder = new CurrentPlace(this);
         LatLng location = currentPositionFinder.getCurrentLocation();
-        // Moving camera on current location (will be Montreal if not found)
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-        mMap.moveCamera(CameraUpdateFactory.zoomIn());
+        // Moving and zooming camera on current location (will be Montreal if not found)
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
     }
 }
