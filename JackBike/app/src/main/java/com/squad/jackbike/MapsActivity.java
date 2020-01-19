@@ -205,9 +205,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng location = currentPositionFinder.getCurrentLocation();
         // Moving and zooming camera on current location (will be Montreal if not found)
         //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
-
-
-        LatLng testStationLocation = new LatLng(45.530199,-73.573818);
-        dirCalc.calculateFootDirections(location, testStationLocation);
     }
 }
