@@ -1,6 +1,5 @@
 package com.squad.jackbike;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,12 +21,20 @@ public abstract class JsonReader {
         return sb.toString();
     }
 
-    public static JSONArray readJsonFromUrl(String url) throws IOException, JSONException, Exception {
+    public static JSONObject readJsonFromUrl(String url) throws Exception {
         InputStream is = new URL(url).openStream();
         BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
         String jsonText = readAll(rd);
-        JSONArray jsonA = new JSONArray(jsonText);
+        JSONObject jsonO = new JSONObject(jsonText);
         is.close();
-        return jsonA;
+        return jsonO;
+    }
+
+    public static JSONObject readJsonFromGoogleAPI(String url) {
+        JSONObject jsonB = new JSONObject();
+        
+
+
+        return jsonB;
     }
 }

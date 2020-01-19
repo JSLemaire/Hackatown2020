@@ -11,16 +11,24 @@ public final class StationsAccessor {
     private String url = "https://api-core.bixi.com/gbfs/fr/station_information.json";
     private ArrayList<Station> stations = new ArrayList<>();
 
-    public void update() throws Exception{
-        //try {
-        JSONArray stationsInformation = JsonReader.readJsonFromUrl(url);
-        /*
-        }catch(IOException e){
-            System.out.println("IO EXCEPTION\t\t\t"+e.toString());
-        }catch(JSONException e){
-            System.out.println("JSON EXCEPTION\t\t\t"+e.toString());
+    public void update() {
+        try{
+            stations.clear();
+            JSONObject stationsInformation = JsonReader.readJsonFromUrl(url);
+            JSONObject data = stationsInformation.getJSONObject("data");
+            JSONArray stationsArray = data.getJSONArray("stations");
+
+            for(int index = 0; index < stationsArray.length(); index++){
+                JSONObject station = stationsArray.getJSONObject(index);
+                String name = station.getString("name");
+                String id = station.getString("station_id");
+                double latitude = station.getDouble("lat");
+                double longitude = station.getDouble("lon");
+                stations.add(new Station(name, id, latitude, longitude));
+            }
+        }catch(Exception g){
+            //TODO : handle exception
         }
-        */
     }
 
     public void getAll(ArrayList<Station> stations){

@@ -8,10 +8,7 @@ import androidx.annotation.Nullable;
 import com.google.android.gms.maps.model.LatLng;
 import com.squad.jackbike.exceptions.DirectionsException;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 
 public class DirectionsCalculator {
 
@@ -26,7 +23,7 @@ public class DirectionsCalculator {
     }
 
     private String urlGoogleDirections = "https://maps.googleapis.com/maps/api/directions/json?";
-/*
+
     public JSONObject getDirectionsBike (LatLng origin, LatLng dest) throws DirectionsException {
         // Add origin to the parameters
         urlGoogleDirections += "origin=" + latlngToString(origin);
@@ -43,16 +40,16 @@ public class DirectionsCalculator {
         // Send HTTPS request and read result from Google Directions API
         // If unable to retreive directions, throw DirectionsException (shows error message on screen)
         try {
-            result = JsonReader.readJsonFromUrl(urlGoogleDirections);
+            result = JsonReader.readJsonFromGoogleAPI(urlGoogleDirections);
             if (result == null) {
                 throw new DirectionsException(currentActivity);
             }
             return result;
-        } catch (IOException e) {
+        } /*catch (IOException e) {
             throw new DirectionsException(currentActivity);
         } catch (JSONException f) {
             throw new DirectionsException(currentActivity);
-        } catch (Exception g) {
+        } */catch (Exception g) {
             throw new DirectionsException(currentActivity);
         }
 
@@ -74,20 +71,20 @@ public class DirectionsCalculator {
         // Send HTTPS request and read result from Google Directions API
         // If unable to retreive directions, throw DirectionsException (shows error message on screen)
         try {
-            result = JsonReader.readJsonFromUrl(urlGoogleDirections);
+            result = JsonReader.readJsonFromGoogleAPI(urlGoogleDirections);
             if (result == null) {
                 throw new DirectionsException(currentActivity);
             }
             return result;
-        } catch (IOException e) {
+        } /*catch (IOException e) {
             throw new DirectionsException(currentActivity);
         } catch (JSONException f) {
             throw new DirectionsException(currentActivity);
-        } catch (Exception g) {
+        } */catch (Exception g) {
             throw new DirectionsException(currentActivity);
         }
     }
-*/
+
     /**
      * Converts a LatLng object to a String using its coordinates.
      * The resulting format : "(latitude),(longitude)".
