@@ -6,18 +6,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.squad.jackbike.exceptions.DirectionsException;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private Button button;
+    private StationsAccessor stationsAccessor;
+
+    CurrentPlace currentPositionFinder = new CurrentPlace(this);
+    DirectionsCalculator dirCalc = new DirectionsCalculator(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
+     * This is where we can add markers or lines, add listeners or move the camera.
      * If Google Play services is not installed on the device, the user will be prompted to install
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
@@ -54,10 +59,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng montreal = new LatLng(45, -73);
-        mMap.addMarker(new MarkerOptions().position(montreal).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(montreal));
-        mMap.moveCamera(CameraUpdateFactory.zoomIn());
+        // Fetching BIXI stations
+        stationsAccessor = new StationsAccessor();
+        try {
+            stationsAccessor.update();
+        }catch(Exception e){
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG);
+        }
+
+        // Detecting user's current position using ActivityCurrentPlace
+        LatLng location = currentPositionFinder.getCurrentLocation();
+        // Moving and zooming camera on current location (will be Montreal if not found)
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+
+        /*
+        LatLng testStationLocation = new LatLng(45.530199,-73.573818);
+        try {
+            dirCalc.getDirectionsFoot(location, testStationLocation);
+        } catch (DirectionsException e) {
+            e.printStackTrace();
+        }
+
+       */
     }
 }
