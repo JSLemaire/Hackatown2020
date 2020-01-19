@@ -32,16 +32,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#66bbff">
+            android:background="#bbffee">
 
             <TextView
                 android:id="@+id/TextViewDepart"
-                android:layout_width="100dp"
+                android:layout_width="110dp"
                 android:layout_height="60dp"
                 android:layout_alignParentTop="false"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Départ : "
+                android:text="  Départ : "
                 android:textSize="12pt"
                 android:textColor="#000000"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
@@ -64,17 +64,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#66bbff">
+            android:background="#bbffee">
             <TextView
                 android:id="@+id/TextViewArrive"
-                android:layout_width="100dp"
+                android:layout_width="110dp"
                 android:layout_height="60dp"
                 android:layout_alignParentTop="false"
                 android:ems="10"
                 android:textSize="12pt"
                 android:textColor="#000000"
                 android:inputType="textPersonName"
-                android:text="Arrivée : "
+                android:text="  Arrivée : "
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
             <EditText
@@ -94,17 +94,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#66bbff">
+            android:background="#bbffee">
             <TextView
                 android:id="@+id/TextViewDate"
-                android:layout_width="160dp"
+                android:layout_width="170dp"
                 android:layout_height="60dp"
                 android:layout_alignParentTop="false"
                 android:ems="10"
                 android:textSize="10pt"
                 android:textColor="#000000"
                 android:inputType="textPersonName"
-                android:text="Date de départ : "
+                android:text="  Date de départ : "
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
             <EditText
@@ -124,7 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#66bbff">
+            android:background="#bbffee">
             <TextView
                 android:id="@+id/TextViewHour"
                 android:layout_width="80dp"
@@ -134,7 +134,7 @@
                 android:textSize="10pt"
                 android:textColor="#000000"
                 android:inputType="textPersonName"
-                android:text="Heure : "
+                android:text="  Heure : "
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
             <EditText
