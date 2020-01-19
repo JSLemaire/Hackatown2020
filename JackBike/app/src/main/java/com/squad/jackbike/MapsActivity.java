@@ -10,12 +10,16 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.squad.jackbike.exceptions.DirectionsException;
+
+import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private StationsAccessor stationsAccessor;
+    private ArrayList<Station> stations = new ArrayList<>();
 
     CurrentPlace currentPositionFinder = new CurrentPlace(this);
     DirectionsCalculator dirCalc = new DirectionsCalculator(this);
@@ -52,6 +56,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             stationsAccessor.update();
         }catch(Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG);
+        }
+
+        stations = stationsAccessor.getAll();
+        for (Station station:stations) {
+
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(station.getLatitude(), station.getLongitude()))
+                    .title(station.getName()+" ["+station.getId()+"]"));
         }
 
         // Detecting user's current position using ActivityCurrentPlace
