@@ -19,6 +19,15 @@ public class CurrentPlace extends AppCompatActivity {
     private FusedLocationProviderClient locationProvider;
 
     public CurrentPlace() {
+
+    }
+
+    public LatLng getCurrentLocation() {
+        refreshLocation();
+        return currentLocation;
+    }
+
+    private void refreshLocation() {
         // initiate location provider (get the client)
         locationProvider = LocationServices.getFusedLocationProviderClient(this);
 
@@ -36,10 +45,6 @@ public class CurrentPlace extends AppCompatActivity {
                         // The Location object can be null in rare cases. If that happens, currentLocation will not be updated.
                     }
                 });
-    }
-
-    public LatLng getCurrentLocation() {
-        return currentLocation;
     }
 
 
