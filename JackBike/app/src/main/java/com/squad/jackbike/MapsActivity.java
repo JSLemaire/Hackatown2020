@@ -14,14 +14,13 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.GeoApiContext;
+import com.google.maps.model.LatLng;
 import com.squad.jackbike.exceptions.AndroidException;
-import com.squad.jackbike.exceptions.DirectionsException;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -31,10 +30,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private StationsAccessor stationsAccessor;
     private boolean mLocationPermission = false;
-    private GeoApiContext geoApiContext = null;
+    private GeoApiContext mGeoApiContext = null;
 
     CurrentPlace currentPositionFinder = new CurrentPlace(this);
-    DirectionsCalculator dirCalc = new DirectionsCalculator(this);
+    DirectionsCalculator dirCalc = new DirectionsCalculator(this, mGeoApiContext);
 
 
     @Override
@@ -46,7 +45,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
+        if (mGeoApiContext == null) {
+            DirectionsCalculator dir = new DirectionsCalculator(this, mGeoApiContext);
+            mGeoApiContext = new GeoApiContext.Builder()
+                    .apiKey(dir.getKeyFromMetaData())
+                    .build();
+        }
     }
 
     // open source code by CodingWithMitch
@@ -166,7 +170,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        // Initialization of GoogleMap
+        MapsInitializer.initialize(this);
         mMap = googleMap;
+        mMap.setMyLocationEnabled(true);
 
         // Fetching BIXI stations
         stationsAccessor = new StationsAccessor();
@@ -179,15 +186,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Detecting user's current position using ActivityCurrentPlace
         LatLng location = currentPositionFinder.getCurrentLocation();
         // Moving and zooming camera on current location (will be Montreal if not found)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
 
 
         LatLng testStationLocation = new LatLng(45.530199,-73.573818);
-        try {
-            dirCalc.getDirectionsFoot(location, testStationLocation);
-        } catch (DirectionsException e) {
-            e.printStackTrace();
-        }
+        dirCalc.calculateFootDirections(location, testStationLocation);
 
 
     }
