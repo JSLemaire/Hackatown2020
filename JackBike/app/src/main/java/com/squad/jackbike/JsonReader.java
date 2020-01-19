@@ -30,4 +30,12 @@ public abstract class JsonReader {
         is.close();
         return jsonA;
     }
+
+    public static JSONObject readJsonFromGoogleAPI(String url) {
+        JSONObject jsonB = new JSONObject();
+        
+
+
+        return jsonB;
+    }
 }

@@ -29,6 +29,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
     }
 
 
@@ -57,7 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Moving and zooming camera on current location (will be Montreal if not found)
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
 
-        /*
+
         LatLng testStationLocation = new LatLng(45.530199,-73.573818);
         try {
             dirCalc.getDirectionsFoot(location, testStationLocation);
@@ -65,6 +67,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
 
-       */
+
     }
 }
