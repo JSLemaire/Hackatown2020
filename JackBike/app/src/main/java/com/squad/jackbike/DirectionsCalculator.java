@@ -52,6 +52,8 @@ public class DirectionsCalculator {
             throw new DirectionsException(currentActivity);
         } catch (JSONException f) {
             throw new DirectionsException(currentActivity);
+        } catch (Exception g) {
+            throw new DirectionsException(currentActivity);
         }
 
     }
@@ -80,6 +82,8 @@ public class DirectionsCalculator {
         } catch (IOException e) {
             throw new DirectionsException(currentActivity);
         } catch (JSONException f) {
+            throw new DirectionsException(currentActivity);
+        } catch (Exception g) {
             throw new DirectionsException(currentActivity);
         }
     }
