@@ -1,9 +1,7 @@
 package com.squad.jackbike;
 
-import androidx.fragment.app.FragmentActivity;
-
-import android.content.Intent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -23,8 +20,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.maps.GeoApiContext;
-import com.google.maps.model.LatLng;
 import com.squad.jackbike.exceptions.AndroidException;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -36,10 +31,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button button;
     private StationsAccessor stationsAccessor;
     private boolean mLocationPermission = false;
-    private GeoApiContext mGeoApiContext = null;
-
-    CurrentPlace currentPositionFinder = new CurrentPlace(this);
-    DirectionsCalculator dirCalc = new DirectionsCalculator(this, mGeoApiContext);
 
 
     @Override
@@ -57,13 +48,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 openItenerarySelector();
             }
         });
-    
-        if (mGeoApiContext == null) {
-            DirectionsCalculator dir = new DirectionsCalculator(this, mGeoApiContext);
-            mGeoApiContext = new GeoApiContext.Builder()
-                    .apiKey(dir.getKeyFromMetaData())
-                    .build();
-        }
     }
 
     public void openItenerarySelector(){
@@ -200,16 +184,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }catch(Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG);
         }
-
-        // Detecting user's current position using ActivityCurrentPlace
-        LatLng location = currentPositionFinder.getCurrentLocation();
-        // Moving and zooming camera on current location (will be Montreal if not found)
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
-
-
-        LatLng testStationLocation = new LatLng(45.530199,-73.573818);
-        dirCalc.calculateFootDirections(location, testStationLocation);
-
 
     }
 }

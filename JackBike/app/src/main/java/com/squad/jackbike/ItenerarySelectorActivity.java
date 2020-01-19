@@ -8,6 +8,9 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.maps.GeoApiContext;
+import com.google.maps.model.LatLng;
+
 public class ItenerarySelectorActivity extends AppCompatActivity {
 
     private Button button[] = new Button[10];
@@ -41,6 +44,27 @@ public class ItenerarySelectorActivity extends AppCompatActivity {
     public void openMap(){
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
+
+        GeoApiContext mGeoApiContext = null;
+
+        if (mGeoApiContext == null) {
+            DirectionsCalculator dir = new DirectionsCalculator(this, mGeoApiContext);
+            mGeoApiContext = new GeoApiContext.Builder()
+                    .apiKey(dir.getKeyFromMetaData())
+                    .build();
+        }
+
+        CurrentPlace currentPositionFinder = new CurrentPlace(this);
+        DirectionsCalculator dirCalc = new DirectionsCalculator(this, mGeoApiContext);
+
+        // Detecting user's current position using ActivityCurrentPlace
+        LatLng location = currentPositionFinder.getCurrentLocation();
+        // Moving and zooming camera on current location (will be Montreal if not found)
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+
+
+        LatLng testStationLocation = new LatLng(45.530199,-73.573818);
+        dirCalc.calculateFootDirections(location, testStationLocation);
     }
 
 }
