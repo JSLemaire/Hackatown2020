@@ -11,7 +11,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
@@ -47,13 +46,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        // Accessing BIXI stations
         stationAccessor = new StationsAccessor();
         stationAccessor.fetch();
 
         // Adding marker on current position using ActivityCurrentPlace
-        CurrentPlace currentPositionFinder = new CurrentPlace();
+        CurrentPlace currentPositionFinder = new CurrentPlace(this);
         LatLng location = currentPositionFinder.getCurrentLocation();
-        mMap.addMarker(new MarkerOptions().position(location).title("My Location"));
         // Moving camera on current location (will be Montreal if not found)
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         mMap.moveCamera(CameraUpdateFactory.zoomIn());

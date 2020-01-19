@@ -18,8 +18,11 @@ public class CurrentPlace extends AppCompatActivity {
     // Instance to use Google Play Services' location API
     private FusedLocationProviderClient locationProvider;
 
-    public CurrentPlace() {
+    // Local instance of the current activity
+    private MapsActivity currentActivity;
 
+    public CurrentPlace(MapsActivity currentActivity) {
+        this.currentActivity = currentActivity;
     }
 
     public LatLng getCurrentLocation() {
@@ -29,7 +32,7 @@ public class CurrentPlace extends AppCompatActivity {
 
     private void refreshLocation() {
         // initiate location provider (get the client)
-        locationProvider = LocationServices.getFusedLocationProviderClient(this);
+        locationProvider = LocationServices.getFusedLocationProviderClient(currentActivity);
 
         // retreive last known location
         locationProvider.getLastLocation()
